@@ -4,31 +4,26 @@
 from milestone_2 import word_generator
 
 def guess_word():
+    print("Your guess is "+ guess)
     inputGuess = False
     while inputGuess == False:
-        guess = input("Guess a letter")
-        guess = guess.lower()
         if len(guess) == 1 and guess.isalpha() == True:
             inputGuess = True
-            print("Your guess is "+ guess)
-            return guess
-        else: 
+            if inputGuess == True:
+                if guess in word_list:
+                    print(f"Good guess! {guess} is in the word.")
+                else:
+                    print(f"Sorry, {guess} is not in the word. Try again.")
+        else:
             print("Oops! That is not a valid input")
+            break   
 
-def check_guess():   
-    if guess in word_list:
-        print(f"Good guess! {guess} is in the word.")
-    else:
-        print(f"Sorry, {guess} is not in the word. Try again.")
-    
-def make_guess():
-    check_guess()   
-    print(word)
-    print(word_list)
-    print(guess)
+def check_guess():
+    guess_word()
+    print("word: "+ str(word))
 
-guess = guess_word()
+guess = input("Guess a letter").lower()
 word = word_generator()
 word_list = list(word)
 
-make_guess()
+check_guess()
