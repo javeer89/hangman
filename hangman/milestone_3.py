@@ -2,8 +2,6 @@
 #%%
 #imported functions (word_generator) and variables (new_word & nwl (new word as a list)).
 from milestone_2 import word_generator
-word = word_generator()
-word_list = list(word)
 
 def guess_word():
     inputGuess = False
@@ -17,19 +15,20 @@ def guess_word():
         else: 
             print("Oops! That is not a valid input")
 
-def check_guess():
-    guess = guess_word()
+def check_guess():   
     if guess in word_list:
         print(f"Good guess! {guess} is in the word.")
     else:
         print(f"Sorry, {guess} is not in the word. Try again.")
-
+    
 def make_guess():
-    check_guess()
-    return
+    check_guess()   
+    print(word)
+    print(word_list)
+    print(guess)
+
+guess = guess_word()
+word = word_generator()
+word_list = list(word)
 
 make_guess()
-
-
-
-
