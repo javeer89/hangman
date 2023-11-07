@@ -37,31 +37,31 @@ class Hangman():
 #Check guessed letter
     def check_guess(self, guess):
         #guess = input("Guess a letter")
-        guess = str.lower(guess)
+       
         print("Your guess is "+ guess)
         inputGuess = False
         
         while inputGuess == False:
             if len(guess) == 1 and guess.isalpha() == True:
                 inputGuess = True
-                wordCheck = False
+                print("THANK YOU FOR A VALID INPUT")
                 self.guesses_update(guess)
-                if wordCheck == False:
-                    if guess in word_list:
-                        print(f"Good guess! {guess} is in the word.")
-                        wordCheck = True
-                        #self.guess_correct(guess)
-                        #print(f"Your Guesses so far: {guess}")
-                    else:
-                        print(f"Sorry, {guess} is not in the word. Try again.")
-                        #self.guess_wrong(guess)
-                        #print(f"we've entered the wrong timeline")
-                        #print(f"Your Guesses so far: {guess}")
-                        #print(f"Guessing Progress: {self.word_to_be_guessed}")
-                        #self.game_state_lose(guess)
+                print(f"Word List that is being checked is: {self.word_list}")
+
+                if guess in self.word_list:
+                    print(f"Good guess! {guess} is in the word.")
+                    self.guess_correct(guess)
+                    print(f"Your Guesses so far: {guess}")
+                else:
+                    print(f"Sorry, {guess} is not in the word. Try again.")
+                    self.guess_wrong(guess)
+                    print(f"we've entered the wrong timeline")
+                    print(f"Your Guesses so far: {guess}")
+                    print(f"Guessing Progress: {self.word_to_be_guessed}")
+                    #self.game_state_lose(guess)
             else:
                 print("Oops! That is not a valid input")
-                break
+                
 
     def guesses_update(self, guess):
         self.guesses.append(guess)
@@ -84,9 +84,24 @@ class Hangman():
 
     #Request a letter to be guessed
     def ask_letter(self):
-        guess = input("Guess a letter")
+        guess = input("Guess a letter").lower()
         #self.guesses.append(str.lower(guess))
         self.check_guess(guess)
-        
 
-Hangman(word_list,5)
+        
+#PLAY GAME
+def play_game(word_list):
+    num_lives = 5
+    game = Hangman(word_list, num_lives)
+
+    while game.num_lives > 0 and game.word_to_be_guessed.count("_") > 0:
+        game.ask_letter()
+        if game.num_lives == 0:
+            print(f"You lost! Muhuhahahaha")
+
+        if game.word_to_be_guessed.count("_") == 0:
+            print("Congratulations, you won!")
+
+play_game(word_list)
+
+
