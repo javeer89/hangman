@@ -26,4 +26,3 @@ guess = input("Guess a letter").lower()
 word = word_generator()
 word_list = list(word)
 
-check_guess()
