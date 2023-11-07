@@ -22,7 +22,6 @@ class Hangman():
 
 
 #Prints to be deleteed.
-
         print(f"Sourced word: {self.word_sourced}.")
         print(f"Your word: {self.word}.")
         print(f"List form: {self.word_list}.")
